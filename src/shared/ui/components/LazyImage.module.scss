@@ -1,0 +1,53 @@
+@use "styles/variables" as *;
+@use "styles/animations" as *;
+
+.figure {
+    overflow: hidden;
+    border-radius: inherit;
+}
+
+.image {
+    opacity: 1;
+    transition: all 0.1s;
+    border-radius: inherit;
+}
+
+.loading {
+    background: #f6f7f8;
+    position: relative;
+    & > * {
+        opacity: 0;
+    }
+    &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        background-repeat: no-repeat;
+        background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+
+        transform: translateX(-100%);
+        animation: shimmer 1s forwards infinite linear;
+        content: "";
+    }
+
+    &[data-theme="dark"] {
+        background: $panel1;
+        &::after {
+            background-image: linear-gradient(to right, $panel2 0%, $panel1 20%, $panel1 40%, $panel2 100%);
+        }
+    }
+}
+.error {
+    .image {
+        display: none;
+    }
+}
+
+@keyframes shimmer {
+    100% {
+        transform: translateX(100%);
+    }
+}

@@ -1,0 +1,39 @@
+@use "styles/variables" as *;
+
+.legend {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+
+    padding: 32px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    backdrop-filter: blur(12px);
+    background: rgba(256, 256, 256, 0.5);
+    color: $graphite900;
+    header {
+        text-align: center;
+        color: inherit;
+        font-weight: 700;
+    }
+    header + p {
+        margin-top: 12px;
+    }
+    button {
+        position: absolute;
+    }
+    p {
+        color: inherit;
+        text-align: left;
+        font-weight: 400;
+    }
+    &[data-theme="dark"] {
+        color: $dark-white;
+        background: rgba(44, 47, 51, 0.5);
+    }
+}

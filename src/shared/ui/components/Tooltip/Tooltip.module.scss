@@ -1,0 +1,115 @@
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+
+$lightBG: $panel2;
+
+.tooltip-appear-enter {
+    opacity: 0;
+    scale: 0.95;
+}
+
+.tooltip-appear-enter-active {
+    opacity: 1;
+    scale: 1;
+}
+
+.tooltip {
+    position: absolute;
+    z-index: 10000000;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    width: max-content;
+
+    .tooltip-box {
+        pointer-events: none;
+        padding: 8px 12px;
+        background: $lightBG;
+        border-radius: 12px;
+        white-space: pre-wrap;
+        text-align: center;
+        @include text(Montserrat, 500, 14px, $white900);
+        position: relative;
+        border: 1px solid $lightBG;
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: $lightBG transparent transparent transparent;
+        }
+    }
+
+    &.right {
+        .tooltip-box::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: -10px;
+            margin-right: 6px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent $lightBG transparent transparent;
+            transform: translate(50%, -50%);
+        }
+    }
+
+    &.left {
+        .tooltip-box::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            border-width: 5px;
+            margin-left: 4px;
+            border-style: solid;
+            border-color: transparent transparent transparent $lightBG;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    &.bottom {
+        .tooltip-box::after {
+            top: -10px;
+            left: 50%;
+            margin-left: -5px;
+            border-color: transparent transparent $lightBG transparent;
+        }
+    }
+
+    &[data-theme="dark"] {
+        $darkbg: $gray900Dark;
+        $triangle: $darkbg;
+        .tooltip-box {
+            background: $darkbg;
+            border: $triangle;
+            color: $white900;
+
+            &::after {
+                border-color: $triangle transparent transparent transparent;
+            }
+        }
+
+        &.right {
+            .tooltip-box::after {
+                border-color: transparent $triangle transparent transparent;
+            }
+        }
+
+        &.left {
+            .tooltip-box::after {
+                border-color: transparent transparent transparent $triangle;
+            }
+        }
+
+        &.bottom {
+            .tooltip-box::after {
+                border-color: transparent transparent $triangle transparent;
+            }
+        }
+    }
+}

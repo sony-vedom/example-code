@@ -1,0 +1,75 @@
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+
+.theme {
+    border: none;
+    max-width: 101px;
+    width: 100%;
+    height: 36px;
+    box-shadow: 0px 0px 12px 1px rgba(0, 0, 0, 0.05);
+    border-radius: 128px;
+    padding: 3px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: $white;
+    cursor: pointer;
+    opacity: 1;
+
+    &:hover {
+        box-shadow: 0px 0px 16px 2px rgba(0, 0, 0, 0.15);
+        transition:
+            background-color 0.3s ease,
+            box-shadow 0.3s ease;
+    }
+
+    &[data-theme="dark"] {
+        background: $panel2;
+
+        &:hover {
+            box-shadow: 0px 0px 12px 1px rgba(255, 255, 255, 0.1);
+        }
+
+        .theme {
+            &__mode {
+                color: $white900;
+            }
+
+            &__icon {
+                background: $line900;
+            }
+        }
+    }
+
+    &__icon {
+        width: 30px;
+        height: 30px;
+        border-radius: 128px;
+        background: #30f;
+        box-shadow: 0px 0px 12px 1px rgba(0, 0, 0, 0.05);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        & > * {
+            width: 18px;
+            height: 18px;
+        }
+    }
+
+    &__border {
+        background: #d7dceb;
+        width: 1px;
+        height: 18px;
+        margin: 0 8px 0 6px;
+    }
+
+    &__mode {
+        margin-right: 16px;
+        font-weight: 700;
+        font-size: 13px;
+        line-height: 16px;
+        letter-spacing: -0.3px;
+        color: $font-color;
+    }
+}

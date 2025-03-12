@@ -1,0 +1,21 @@
+.drag-component {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    padding: 8px;
+    border-radius: 6px;
+    user-select: none;
+    cursor: grab;
+    &.disabled {
+        cursor: default;
+        border: none;
+        pointer-events: none;
+        .button {
+            display: none;
+        }
+    }
+    &.active {
+        z-index: 100;
+        padding: 100px;
+        cursor: grabbing;
+    }
+}

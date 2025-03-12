@@ -1,0 +1,64 @@
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+@use "styles/animations" as *;
+
+.loader {
+    display: flex;
+    flex-direction: column;
+    gap: 42px;
+    cursor: pointer;
+    width: 100%;
+
+    &-block {
+        border: 1px dashed $gray900;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        height: 204px;
+        width: 100%;
+
+        &__content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            transition:
+                opacity 0.5s,
+                transform 0.5s;
+            opacity: 0;
+            visibility: hidden;
+
+            &.visible {
+                opacity: 1;
+                visibility: visible;
+                animation: popIn 0.6s ease-out forwards;
+            }
+
+            & figcaption {
+                font-size: 18px;
+                font-weight: 700;
+                color: inherit;
+                max-width: 80%;
+
+                b {
+                    font-style: normal;
+                    background: $primary;
+                    background-clip: text;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                }
+            }
+        }
+
+        &:hover {
+            border-style: solid;
+        }
+    }
+
+    &__delete {
+        width: fit-content;
+    }
+}

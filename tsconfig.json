@@ -1,0 +1,38 @@
+{
+    "compilerOptions": {
+        "target": "ES2015",
+        "module": "ESNext",
+        "lib": ["ESNext", "DOM", "DOM.Iterable"],
+        "useDefineForClassFields": true,
+        "allowJs": true,
+        "baseUrl": "./src",
+        "outDir": "./build",
+        /* Bundler mode */
+        "moduleResolution": "bundler",
+        "allowImportingTsExtensions": true,
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "noEmit": true,
+        "jsx": "react-jsx",
+        "removeComments": true,
+        /* Linting */
+        "strict": true,
+        "noImplicitAny": false,
+        "strictNullChecks": false,
+        "strictPropertyInitialization": false,
+        "strictFunctionTypes": true,
+        "noImplicitThis": true,
+        "strictBindCallApply": true,
+        "checkJs": false,
+        "noImplicitUseStrict": false,
+        "noUnusedLocals": false,
+        "skipLibCheck": true,
+        "types": ["node", "@types/three", "@testing-library/jest-dom", "vitest-dom/extend-expect"]
+    },
+    "include": ["src", "elements.ts", "postcss.config.js", "tailwind.config.ts"],
+    "references": [
+        {
+            "path": "./tsconfig.node.json"
+        }
+    ]
+}

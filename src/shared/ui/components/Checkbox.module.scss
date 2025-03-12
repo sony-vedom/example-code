@@ -1,0 +1,173 @@
+@use "styles/variables" as *;
+
+.primary,
+.squared {
+    position: relative;
+    display: inline-block;
+    width: 33.33px;
+    height: 27.13px;
+    border-radius: 12px;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+    &:active {
+        transform: scale(0.85);
+    }
+
+    &:disabled,
+    &[disabled] {
+        opacity: 0.6;
+    }
+
+    & > div {
+        background: $dark-gray;
+        bottom: 0;
+        cursor: pointer;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        transition: all 0.4s ease;
+        border-radius: 12px;
+        pointer-events: none;
+
+        &::before {
+            pointer-events: none;
+            background-color: #fff;
+            bottom: 6.22px;
+            content: "";
+            height: 14.72px;
+            left: 5.43px;
+            position: absolute;
+            transition: all 0.4s ease;
+            width: 14.72px;
+            border-radius: 12px;
+        }
+    }
+
+    input {
+        width: 100%;
+        height: 100%;
+        &:checked + div {
+            background: $main-color;
+        }
+
+        &:checked + div::before {
+            transform: translateX(8px);
+        }
+    }
+}
+
+.squared {
+    width: 20px;
+    border-radius: 6px;
+    height: 16.28px;
+    & > div {
+        border-radius: 6px;
+        &::before {
+            bottom: 4.5px;
+            height: 7px;
+            left: 2px;
+            width: 7px;
+        }
+    }
+}
+
+.flag,
+.flag-red {
+    display: flex;
+    align-items: center;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    input[type="checkbox"] {
+        cursor: pointer;
+        z-index: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        padding: 0;
+        margin: 0;
+        opacity: 0;
+    }
+
+    & > div {
+        pointer-events: none;
+        width: 100%;
+        height: 100%;
+        border-radius: 3px;
+        background-color: transparent;
+        transition: background-color 0.3s ease;
+        padding: 20%;
+        &:before {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            background-image: url("../../../assets/icons/check__whitebg.svg");
+            background-size: cover;
+        }
+    }
+    input:checked ~ div {
+        &:before {
+            opacity: 1;
+        }
+    }
+
+    &:hover {
+        transform: scale(1.3);
+        input {
+            & ~ div {
+                opacity: 0.25;
+                &:before {
+                    opacity: 1;
+                }
+            }
+            &:checked ~ div {
+                opacity: 0.75;
+            }
+        }
+    }
+    &:active {
+        transform: scale(0.9);
+    }
+}
+
+.flag {
+    & > div {
+        border: 1px solid #248cff;
+    }
+    input:checked ~ div {
+        background-color: #248cff;
+    }
+
+    &:hover {
+        input {
+            & ~ div {
+                background-color: #248cff;
+            }
+        }
+    }
+}
+.flag-red {
+    & > div {
+        border: 1px solid #f09;
+    }
+    input:checked ~ div {
+        background-color: #f09;
+    }
+
+    &:hover {
+        input {
+            & ~ div {
+                background-color: #f09;
+            }
+        }
+    }
+}

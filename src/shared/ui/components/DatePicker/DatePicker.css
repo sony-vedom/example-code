@@ -1,0 +1,148 @@
+@tailwind utilities;
+
+/* datepicker-trigger */
+:root {
+    --statistics-datepicker-trigger-text-color: inherit;
+    --statistics-datepicker-trigger-text-weight: inherit;
+    --statistics-datepicker-trigger-text-size: inherit;
+}
+
+@layer utilities {
+    .statistics-datepicker-trigger {
+        @apply flex cursor-pointer flex-row justify-between  transition-all;
+    }
+    .statistics-datepicker-trigger {
+        font-weight: var(--statistics-datepicker-trigger-text-weight);
+        color: var(--statistics-datepicker-trigger-text-color);
+        font-size: var(--statistics-datepicker-trigger-text-size);
+    }
+}
+
+/* datepicker-content */
+:root {
+    --statistics-datepicker-content-today-bg: #fb3333;
+    --statistics-datepicker-content-today-text: #fff;
+    --statistics-datepicker-content-today-rounded: 0.4375rem;
+
+    --statistics-datepicker-content-selected-bg: #d989ff;
+    --statistics-datepicker-content-selected-text: #fff;
+    --statistics-datepicker-content-selected-rounded: 0.4375rem;
+
+    --statistics-datepicker-content-in-range-bg: #d989ff80;
+    --statistics-datepicker-content-in-range-rounded: 0;
+
+    --statistics-datepicker-content-out-permitted-range-bg: #ff009980;
+    --statistics-datepicker-content-out-permitted-range-rounded: 0;
+    --statistics-datepicker-content-selected-out-permitted-range-bg: #f09;
+    --statistics-datepicker-content-selected-out-permitted-range-text: #fff;
+    --statistics-datepicker-content-selected-out-permitted-range-rounded: 0.4375rem;
+
+    --statistics-datepicker-content-text-color: #000;
+    --statistics-datepicker-content-text-color-dark: #fff;
+    --statistics-datepicker-content-text-weight: 500;
+    --statistics-datepicker-content-text-size: 0.5rem;
+    --statistics-datepicker-content-shadow: 0 2px 4px #0000001e;
+    --statistics-datepicker-content-bg: #fff;
+    --statistics-datepicker-content-bg-dark: #232627;
+    --statistics-datepicker-content-navigation-accent: #1265ff;
+    --statistics-datepicker-content-navigation-text-size: 0.625rem;
+}
+
+@layer utilities {
+    .statistics-datepicker-content {
+        @apply grid items-center justify-items-center gap-x-4 gap-y-1.5 rounded-xl;
+    }
+    .statistics-datepicker-content {
+        @apply mt-4 rounded-xl bg-[--statistics-datepicker-content-bg] p-2.5 text-[--statistics-datepicker-content-text-color] dark:bg-[--statistics-datepicker-content-bg-dark] dark:text-[--statistics-datepicker-content-text-color-dark];
+        font-size: var(--statistics-datepicker-content-text-size);
+        font-weight: var(--statistics-datepicker-content-text-weight);
+        box-shadow: var(--statistics-datepicker-content-shadow);
+    }
+    .statistics-datepicker-content > .statistics-datepicker-content-navigation {
+        @apply flex items-center justify-between justify-self-stretch [&_svg_path]:fill-[--statistics-datepicker-content-navigation-accent];
+
+        color: var(--statistics-datepicker-content-navigation-accent);
+        font-size: var(--statistics-datepicker-content-navigation-text-size);
+        font-weight: var(--statistics-datepicker-content-text-weight);
+    }
+    .statistics-datepicker-content > ol {
+        @apply grid select-none rounded-xl text-center text-size-inherit font-weight-inherit text-inherit [&_span]:text-size-inherit [&_span]:font-weight-inherit [&_span]:text-inherit;
+    }
+    .statistics-datepicker-content > ol.days {
+        @apply -mx-2 -my-1.5 auto-rows-[1.25rem] grid-cols-[repeat(7,1.875rem)] gap-0 [&_.line]:h-3.5 [&_.mark]:size-3.5;
+    }
+    .statistics-datepicker-content > ol.days > li:nth-child(7n + 6),
+    .statistics-datepicker-content > ol.days > li:nth-child(7n + 7) {
+        color: var(--statistics-datepicker-content-selected-bg);
+    }
+    .statistics-datepicker-content > ol.days > li:nth-child(6),
+    .statistics-datepicker-content > ol.days > li:nth-child(7) {
+        opacity: 0.5;
+    }
+    .statistics-datepicker-content > ol.days > li:nth-child(7n + 1) .line {
+        @apply ml-2 justify-start;
+    }
+    .statistics-datepicker-content > ol.days > li:nth-child(7n + 7) .line {
+        @apply mr-2 justify-end;
+    }
+    .statistics-datepicker-content > ol.months,
+    .statistics-datepicker-content > ol.years {
+        @apply grid-cols-3 gap-y-3 [&>li:nth-child(3n+1)_.line]:pl-0 [&>li:nth-child(3n+3)_.line]:pr-0 [&_.line]:px-1.5 [&_.mark>span]:leading-normal [&_.mark]:flex-1 [&_.mark]:px-2 [&_.mark]:py-1;
+    }
+    .statistics-datepicker-content > ol > li {
+        @apply flex cursor-pointer items-center justify-center text-size-inherit font-weight-inherit text-inherit [&:hover_.mark]:scale-125;
+    }
+    .statistics-datepicker-content > ol > li .line {
+        @apply flex w-full items-center justify-center text-size-inherit font-weight-inherit text-inherit transition-all;
+    }
+    .statistics-datepicker-content > ol > li .mark {
+        @apply flex items-center justify-center bg-transparent text-size-inherit font-weight-inherit text-inherit transition-all;
+    }
+    .statistics-datepicker-content > ol > li.prev .mark span,
+    .statistics-datepicker-content > ol > li.next .mark span {
+        @apply opacity-25;
+    }
+    .statistics-datepicker-content > ol .today.mark {
+        @apply rounded-[var(--statistics-datepicker-content-today-rounded)] bg-[var(--statistics-datepicker-content-today-bg)] text-[var(--statistics-datepicker-content-today-text)];
+    }
+    .statistics-datepicker-content > ol .selected-prev:not(.out-permitted-range) .mark,
+    .statistics-datepicker-content > ol .selected-next:not(.out-permitted-range) .mark {
+        @apply rounded-[var(--statistics-datepicker-content-selected-rounded)] bg-[var(--statistics-datepicker-content-selected-bg)] text-[var(--statistics-datepicker-content-selected-text)];
+    }
+    .statistics-datepicker-content > ol .line.in-range:not(.selected-prev),
+    .statistics-datepicker-content > ol .line.in-range:not(.selected-prev) {
+        @apply rounded-[var(--statistics-datepicker-content-in-range-rounded)] bg-[var(--statistics-datepicker-content-in-range-bg)];
+    }
+    .statistics-datepicker-content > ol .selected-next.in-range:not(.selected-prev) {
+        background: linear-gradient(
+            90deg,
+            var(--statistics-datepicker-content-in-range-bg) 50%,
+            transparent 60%
+        ) !important;
+    }
+    .statistics-datepicker-content > ol .selected-prev.in-range:not(.selected-next) {
+        background: linear-gradient(90deg, transparent 40%, var(--statistics-datepicker-content-in-range-bg) 60%);
+    }
+    .statistics-datepicker-content > ol .line.out-permitted-range:not(.selected-prev),
+    .statistics-datepicker-content > ol .line.out-permitted-range:not(.selected-prev) {
+        @apply rounded-[var(--statistics-datepicker-content-out-permitted-range-rounded)] bg-[var(--statistics-datepicker-content-out-permitted-range-bg)];
+    }
+    .statistics-datepicker-content > ol .selected-next.out-permitted-range:not(.selected-prev) {
+        background: linear-gradient(
+            90deg,
+            var(--statistics-datepicker-content-out-permitted-range-bg) 50%,
+            transparent 60%
+        ) !important;
+    }
+    .statistics-datepicker-content > ol .selected-prev.out-permitted-range:not(.selected-next) {
+        background: linear-gradient(
+            90deg,
+            transparent 40%,
+            var(--statistics-datepicker-content-out-permitted-range-bg) 60%
+        );
+    }
+    .statistics-datepicker-content > ol .selected-prev.out-permitted-range .mark,
+    .statistics-datepicker-content > ol .selected-next.out-permitted-range .mark {
+        @apply rounded-[var(--statistics-datepicker-content-selected-out-permitted-range-rounded)] bg-[var(--statistics-datepicker-content-selected-out-permitted-range-bg)] text-[var(--statistics-datepicker-content-selected-out-permitted-range-text)];
+    }
+}

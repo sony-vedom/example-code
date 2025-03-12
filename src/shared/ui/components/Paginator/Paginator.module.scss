@@ -1,0 +1,236 @@
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+
+.container {
+    justify-content: space-between;
+    display: flex;
+
+    .pages {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        & > div {
+            cursor: pointer;
+
+            &:last-child {
+                //  next
+                padding: 5px;
+                border-radius: 100%;
+                border: 1px solid #eee;
+                height: 30px;
+                width: 30px;
+            }
+
+            &:first-child {
+                // prev
+                border-radius: 100%;
+                border: 1px solid #eee;
+                height: 30px;
+                padding: 5px;
+                width: 30px;
+            }
+
+            &:first-child,
+            &:last-child {
+                // prev | next
+                &.disabled {
+                    background-color: #eee;
+                }
+
+                &:not(.disabled):hover {
+                    background-color: $font-color;
+
+                    svg path {
+                        fill: white;
+                    }
+                }
+            }
+
+            &.pages-items {
+                display: flex;
+                align-items: center;
+
+                & > .page {
+                    width: 32px;
+                    height: 32px;
+                    @include text(Montserrat, 700, 13px, $graphite900);
+                    line-height: 16px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    &.active {
+                        color: $blue900;
+                    }
+
+                    &:not(.dots):hover {
+                        color: $blue900;
+                        opacity: 0.8;
+                    }
+                }
+            }
+        }
+    }
+
+    .goto {
+        float: right;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        & > div {
+            height: 100%;
+        }
+
+        label {
+            @include text(Montserrat, 600, 12px, $graphite900);
+        }
+        .limit-select {
+            button {
+                position: relative;
+                width: 86px;
+                height: 100%;
+                padding: 4px 4px 3px 11px;
+                border-radius: 6px;
+                @include text(Montserrat, 700, 13px, $graphite900);
+                &:before {
+                    content: " ";
+                    position: absolute;
+                    right: 4px;
+                    width: 28px;
+                    height: 28px;
+                    border-radius: 6px;
+                    background: #fff;
+                    transition: all 0.1s ease-in-out;
+                }
+                img {
+                    width: 28px;
+                    height: 28px;
+                    border-radius: 6px;
+                    padding: 9px;
+                    background: transparent;
+                }
+            }
+        }
+        .bubble {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 4px 3px 11px;
+            @include text(Montserrat, 700, 13px, $graphite900);
+            line-height: 16px;
+            background: $background;
+            border-radius: 6px;
+            border: 1px solid #e6e9f1;
+
+            div {
+                cursor: pointer;
+                width: 28px;
+                height: 28px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 6px;
+                background: #fff;
+
+                &:hover {
+                    opacity: 0.7;
+                }
+            }
+
+            input {
+                max-width: 40px;
+                border: none;
+                @include text(Montserrat, 700, 13px, $graphite900);
+                background: $background;
+            }
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        align-items: center;
+        gap: 8px;
+        flex-direction: column;
+        .goto {
+            justify-content: space-between;
+        }
+    }
+
+    @media screen and (max-width: 490px) {
+        .goto {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: auto auto;
+
+            grid-gap: 4px 10px;
+            grid-auto-flow: column;
+        }
+    }
+
+    &[data-theme="dark"] {
+        color: $background;
+
+        .pages {
+            color: $white;
+
+            & > div {
+                color: $gray900Dark;
+
+                &:first-child,
+                &:last-child {
+                    background-color: $panel1;
+                    border-color: $panel1;
+
+                    svg path {
+                        fill: $white900;
+                    }
+
+                    &.disabled {
+                        opacity: 0.4;
+                    }
+                }
+
+                .page {
+                    color: $gray900Dark;
+                    &.active {
+                        color: $blue900;
+                    }
+                }
+            }
+        }
+
+        .goto {
+            label {
+                color: $white900;
+            }
+            .limit-select {
+                button {
+                    color: $white900;
+                    &:before {
+                        background: $backgroundDark;
+                    }
+                    img {
+                        filter: invert(1);
+                    }
+                }
+            }
+            .bubble {
+                background: $line900;
+                border: 1px solid $panel1;
+
+                input {
+                    background: $line900;
+                    color: $background;
+                }
+
+                div {
+                    background: $backgroundDark;
+
+                    svg path {
+                        fill: $white900;
+                    }
+                }
+            }
+        }
+    }
+}

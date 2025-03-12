@@ -1,0 +1,22 @@
+.snap-vertical,
+.snap-horizontal {
+    background-color: rgb(64 1 249);
+    mix-blend-mode: difference;
+    height: 2px;
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 2px;
+}
+
+.snap-vertical {
+    height: 100%;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+.snap-horizontal {
+    top: 50%;
+    transform: translate(0, -50%);
+    width: 100%;
+}

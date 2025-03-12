@@ -1,0 +1,11 @@
+{
+    "trailingComma": "es5",
+    "endOfLine": "lf",
+    "tabWidth": 4,
+    "useTabs": false,
+    "arrowParens": "always",
+    "printWidth": 120,
+    "singleAttributePerLine": true,
+    "plugins": ["prettier-plugin-tailwindcss"],
+    "tailwindFunctions": ["cn", "twMerge"]
+}

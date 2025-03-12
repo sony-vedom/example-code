@@ -1,0 +1,6 @@
+https://dev-lk.atlsar.com {
+	tls ./tls/cert.pem ./tls/key.pem
+	route {
+		reverse_proxy http://127.0.0.1:3000
+	}
+}

@@ -1,0 +1,43 @@
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+
+.color:has(.error) {
+    border: 1px solid #ff009933 !important;
+}
+.color {
+    border: 1px solid #8798ab33;
+    position: relative;
+    border-radius: 4px;
+
+    &.error {
+        border: 1px solid #ff009933 !important;
+    }
+
+    input[type="text"] {
+        flex: 1;
+        border: none;
+        background: none;
+        outline: none;
+        height: 29px;
+        padding: 7px 8px;
+        @include text(inter, 500, 13px, $gray900);
+    }
+
+    input[type="color"] {
+        width: 29px;
+        height: 29px;
+        outline: none;
+        padding: 0;
+        cursor: pointer;
+        outline: 1px solid rgba(135, 152, 171, 0.2);
+        border-radius: 4px;
+        &::-webkit-color-swatch-wrapper {
+            padding: 0;
+            border-radius: 5px;
+        }
+        &::-webkit-color-swatch {
+            border: none;
+            border-radius: 5px;
+        }
+    }
+}

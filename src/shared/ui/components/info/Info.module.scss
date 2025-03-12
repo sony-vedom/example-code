@@ -1,0 +1,80 @@
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+
+.info {
+    border-radius: 6px;
+    padding: 16px 16px 16px 48px;
+    width: 100%;
+    display: block;
+    position: relative;
+    border: 1.5px solid;
+    @include text(Montserrat, 500, 16px, $graphite900);
+
+    &[data-theme="dark"] {
+        color: $white900;
+    }
+
+    &:before {
+        content: "";
+        font-size: 24px;
+        position: absolute;
+        left: 12px;
+        top: calc(50% - 8px);
+        padding: 0;
+    }
+
+    &.alert-error {
+        background: #ff009910;
+        border-color: $pink900;
+        color: $pink900;
+
+        &:before {
+            content: "⚠";
+            color: $pink900;
+        }
+    }
+
+    &.alert-success {
+        background: rgb(0 128 0 / 10%);
+        border-color: green;
+
+        &:before {
+            content: "✓";
+            color: green;
+        }
+    }
+
+    &.badge-grey {
+        background: $dark-gray;
+        border-radius: 8px;
+        border: none;
+        color: $white900;
+        font-weight: 600;
+        line-height: 1.5em;
+        padding: 2px 6px;
+        white-space: break-spaces;
+        width: auto;
+    }
+    &.badge-red {
+        background: $pink900;
+        border-radius: 8px;
+        border: none;
+        color: $white900;
+        font-weight: 600;
+        line-height: 1.5em;
+        padding: 2px 6px;
+        white-space: break-spaces;
+        width: auto;
+    }
+    &.badge-green {
+        background: rgba(87, 192, 92, 0.33);
+        border-radius: 8px;
+        border: none;
+        color: $green900;
+        font-weight: 600;
+        line-height: 1.5em;
+        padding: 2px 6px;
+        white-space: break-spaces;
+        width: auto;
+    }
+}

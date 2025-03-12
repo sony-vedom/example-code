@@ -1,0 +1,113 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        },
+        "import/extensions": [".js", ".jsx", ".ts", ".tsx", ".css", ".scss"],
+        "import/parsers": {
+            "@typescript-eslint/parser": [".ts", ".tsx"]
+        },
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".jsx", ".ts", ".tsx", ".css", ".scss"]
+            }
+        }
+    },
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2018,
+        "sourceType": "module",
+        "project": "./tsconfig.json"
+    },
+    "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "plugin:import/recommended",
+        // "plugin:jsx-a11y/recommended",
+        "plugin:react/recommended",
+        "plugin:react-hooks/recommended",
+        "airbnb-typescript",
+        "eslint-config-prettier",
+        "plugin:tailwindcss/recommended",
+        "plugin:@react-three/all"
+    ],
+    "plugins": ["react", "jsx-a11y", "tailwindcss", "prettier"],
+    "rules": {
+        "no-unused-expressions": "off",
+        "import/order": [
+            "error",
+            {
+                "groups": ["builtin", "external", "internal"],
+                "pathGroups": [
+                    {
+                        "pattern": "react",
+                        "group": "external",
+                        "position": "before"
+                    }
+                ],
+                "pathGroupsExcludedImportTypes": ["react"],
+                "alphabetize": {
+                    "order": "asc",
+                    "caseInsensitive": true
+                }
+            }
+        ],
+        "react/jsx-props-no-spreading": "off",
+        "react/react-in-jsx-scope": "off",
+        "react/require-default-props": "off",
+        "import/extensions": [
+            "error",
+            "ignorePackages",
+            {
+                "": "never",
+                "js": "never",
+                "mjs": "never",
+                "jsx": "never",
+                "ts": "never",
+                "tsx": "never",
+                "css": "always",
+                "scss": "always"
+            }
+        ],
+        "no-tabs": 0,
+        "import/prefer-default-export": "off",
+        "react-hooks/exhaustive-deps": "off",
+        "no-underscore-dangle": "off",
+        "@typescript-eslint/comma-dangle": "off",
+        "@typescript-eslint/indent": "off",
+        "no-param-reassign": "off",
+        "curly": ["error", "multi-line"],
+        "brace-style": ["error", "1tbs"],
+        "@typescript-eslint/no-non-null-asserted-optional-chain": "warn",
+        "@typescript-eslint/no-explicit-any": "warn",
+        "no-console": "warn",
+        "react/no-unknown-property": ["warn", { "ignore": ["intensity", "position", "geometry", "object", "args"] }],
+        "tailwindcss/no-custom-classname": "off"
+    },
+    "ignorePatterns": [
+        "lighthouse/**",
+        "build/**",
+        "vite.config.ts",
+        "vite.config.ts",
+        "vitest.config.ts",
+        "vitest.setup.ts"
+    ],
+    "overrides": [
+        {
+            "files": ["*.css", "*.scss", "*.tsx", "*.ss"],
+            "rules": {
+                "no-unused-vars": "off"
+            }
+        }
+    ]
+}
